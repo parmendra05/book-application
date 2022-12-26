@@ -31,14 +31,14 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookDto updateBook(BookDto dto, Long id) {
 		Book savedBook = bookRepository.findById(id).get();
-		
+
 		savedBook.setBookName(dto.getBookName());
 		savedBook.setAuthor(dto.getAuthor());
 		savedBook.setPrice(dto.getPrice());
-		
-		Book updatedBook=bookRepository.save(savedBook);
+
+		Book updatedBook = bookRepository.save(savedBook);
 		return convertEntityToDto(updatedBook);
-		
+
 	}
 
 	@Override
