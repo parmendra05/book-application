@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pack.dto.BookDto;
 import com.pack.entity.Book;
+import com.pack.exception.ResourseNotFoundException;
 import com.pack.repository.BookRepository;
 
 @Service
@@ -29,8 +30,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookDto updateBook(BookDto dto, Long id) {
-		Book savedBook = bookRepository.findById(id).get();
+	public BookDto updateBook(BookDto dto, Long id) throws ResourseNotFoundException {
+		Book savedBook = bookRepository.findById(id).orElseThrow(() -> new ResourseNotFoundException("Book", "book_id", id));
 
 		savedBook.setBookName(dto.getBookName());
 		savedBook.setAuthor(dto.getAuthor());
@@ -42,7 +43,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public void deleteBook(Long id) {
+	public void deleteBook(Long id) throws ResourseNotFoundException {
+		bookRepository.findById(id).orElseThrow(() -> new ResourseNotFoundException("Book", "book_id", id));
 		bookRepository.deleteById(id);
 
 	}

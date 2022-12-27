@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pack.dto.BookDto;
 import com.pack.entity.Book;
+import com.pack.exception.ResourseNotFoundException;
 import com.pack.service.BookService;
 
 @RestController
@@ -43,7 +44,7 @@ public class BookController {
 	}
 
 	@DeleteMapping("/delete-book/{id}")
-	public ResponseEntity<String> deleteBookBy(@PathVariable(name = "id") Long id) {
+	public ResponseEntity<String> deleteBookBy(@PathVariable(name = "id") Long id) throws ResourseNotFoundException {
 		bookService.deleteBook(id);
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
