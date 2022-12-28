@@ -38,7 +38,7 @@ public class BookController {
 	}
 
 	@PutMapping("/update-book/{id}")
-	public ResponseEntity<BookDto> updateBookBy(@RequestBody BookDto dto, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<BookDto> updateBookBy(@RequestBody BookDto dto, @PathVariable(name = "id") Long id) throws ResourseNotFoundException {
 		BookDto savedBook = bookService.updateBook(dto, id);
 		return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
 	}
