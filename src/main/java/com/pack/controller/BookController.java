@@ -2,6 +2,8 @@ package com.pack.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +34,13 @@ public class BookController {
 	}
 
 	@PostMapping("/save-book")
-	public ResponseEntity<BookDto> saveBook(@RequestBody BookDto dto) {
+	public ResponseEntity<BookDto> saveBook(@Valid @RequestBody BookDto dto) {
 		BookDto savedBook = bookService.saveBook(dto);
 		return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update-book/{id}")
-	public ResponseEntity<BookDto> updateBookBy(@RequestBody BookDto dto, @PathVariable(name = "id") Long id) throws ResourseNotFoundException {
+	public ResponseEntity<BookDto> updateBookBy(@Valid @RequestBody BookDto dto, @PathVariable(name = "id") Long id) throws ResourseNotFoundException {
 		BookDto savedBook = bookService.updateBook(dto, id);
 		return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
 	}
