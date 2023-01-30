@@ -35,4 +35,14 @@ public class BookApiExceptionHandler {
 		});
 		return new ResponseEntity<>(errorList,HttpStatus.BAD_REQUEST);
 	}
+	// Global Exception handler handle every types of excetion, in case of new exception occurs 
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ErrorDetails> globalfExceptionHandler(Exception exception, WebRequest request){
+		
+		ErrorDetails error=new ErrorDetails();
+		error.setTimestamp(new Date());
+		error.setMessasge(exception.getMessage());
+		error.setDetails(request.getDescription(false));
+		return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+	}
 }
