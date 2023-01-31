@@ -29,7 +29,8 @@ public class BookController {
 	private BookService bookService;
 
 	@GetMapping("/get-books")
-	public BookResponse getAllBooks(@RequestParam(value = AppConstraints.DEFAULT_PAGE_NUM, defaultValue = "0", required = false) int pageNum,
+	public BookResponse getAllBooks(
+			@RequestParam(value = AppConstraints.DEFAULT_PAGE_NUM, defaultValue = "0", required = false) int pageNum,
 			@RequestParam(value = AppConstraints.DEFAULT_PAGE_SIZE, defaultValue = "2", required = false) int pageSize,
 			@RequestParam(value = AppConstraints.DEFAULT_SORT_BY, defaultValue = "bookId", required = false) String sortBy,
 			@RequestParam(value = AppConstraints.DEFAULT_SORT_DIRECTION, defaultValue = "ASC", required = false) String sortDir) {
