@@ -1,14 +1,12 @@
 package com.pack.service;
 
-import java.util.List;
-
 import com.pack.dto.BookDto;
-import com.pack.entity.Book;
+import com.pack.dto.BookResponse;
 import com.pack.exception.ResourseNotFoundException;
 
 public interface BookService {
 
-	List<Book> getAllBooks();
+	BookResponse getAllBooks(int pageNum, int pageSize);
 
 	BookDto saveBook(BookDto dto);
 
