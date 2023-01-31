@@ -29,8 +29,10 @@ public class BookController {
 
 	@GetMapping("/get-books")
 	public BookResponse getAllBooks(@RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
-			@RequestParam(value = "pageSize", defaultValue = "2", required = false) int pageSize) {
-		BookResponse response = bookService.getAllBooks(pageNum, pageSize);
+			@RequestParam(value = "pageSize", defaultValue = "2", required = false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = "bookId", required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = "ASC", required = false) String sortDir) {
+		BookResponse response = bookService.getAllBooks(pageNum, pageSize, sortBy, sortDir);
 		return response;
 	}
 

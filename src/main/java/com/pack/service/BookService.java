@@ -6,7 +6,7 @@ import com.pack.exception.ResourseNotFoundException;
 
 public interface BookService {
 
-	BookResponse getAllBooks(int pageNum, int pageSize);
+	BookResponse getAllBooks(int pageNum, int pageSize, String sortBy, String sortDir);
 
 	BookDto saveBook(BookDto dto);
 
