@@ -19,7 +19,8 @@ public class ResourseNotFoundException extends Exception {
 	private Long fieldValue;
 
 	public ResourseNotFoundException(String resourceName, String fieldName, Long fieldValue) {
-		super(String.format("%s not found with %s :%s ", resourceName, fieldName, fieldValue));
+		super(String.format("%s doesn't exist with %s :%s ", resourceName, fieldName, fieldValue));
+		// message like this: "Book doesn't exist with book_id : 1000"
 		this.resourceName = resourceName;
 		this.fieldName = fieldName;
 		this.fieldValue = fieldValue;
