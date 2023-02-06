@@ -19,6 +19,7 @@ import com.pack.dto.BookDto;
 import com.pack.dto.BookResponse;
 import com.pack.exception.ResourseNotFoundException;
 import com.pack.service.BookService;
+import com.pack.util.AppConstraints;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -29,10 +30,10 @@ public class BookController {
 
 	@GetMapping("/get-books")
 
-	public BookResponse getAllBooks(@RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
-			@RequestParam(value = "pageSize", defaultValue = "2", required = false) int pageSize,
-			@RequestParam(value = "sortBy", defaultValue = "bookId", required = false) String sortBy,
-			@RequestParam(value = "sortDir", defaultValue = "ASC", required = false) String sortDir) {
+	public BookResponse getAllBooks(@RequestParam(value = "pageNum", defaultValue = AppConstraints.DEFAULT_PAGE_NUM, required = false) int pageNum,
+			@RequestParam(value = "pageSize", defaultValue = AppConstraints.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = AppConstraints.DEFAULT_SORT_BY, required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = AppConstraints.DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
 
 		BookResponse response = bookService.getAllBooks(pageNum, pageSize, sortBy, sortDir);
 		return response;
