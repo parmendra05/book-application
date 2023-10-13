@@ -1,7 +1,10 @@
 package com.pack.service;
 
+import java.util.List;
+
 import com.pack.dto.BookDto;
 import com.pack.dto.BookResponse;
+import com.pack.entity.Book;
 import com.pack.exception.ResourseNotFoundException;
 
 public interface BookService {
@@ -13,5 +16,7 @@ public interface BookService {
 	BookDto updateBook(BookDto dto, Long id) throws ResourseNotFoundException;
 
 	void deleteBook(Long id) throws ResourseNotFoundException;
+
+	List<Book> getListOfBooks();
 
 }

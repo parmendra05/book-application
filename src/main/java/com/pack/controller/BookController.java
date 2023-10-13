@@ -1,10 +1,13 @@
 package com.pack.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pack.dto.BookDto;
 import com.pack.dto.BookResponse;
+import com.pack.entity.Book;
 import com.pack.exception.ResourseNotFoundException;
 import com.pack.service.BookService;
 import com.pack.util.AppConstraints;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1")
 public class BookController {
@@ -56,5 +60,11 @@ public class BookController {
 	public ResponseEntity<String> deleteBookBy(@PathVariable(name = "id") Long id) throws ResourseNotFoundException {
 		bookService.deleteBook(id);
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
+	}
+	
+	@GetMapping("/geting-books")
+	public List<Book> getAllBooks() {
+		List<Book> response = bookService.getListOfBooks();
+		return response;
 	}
 }

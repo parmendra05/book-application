@@ -96,4 +96,10 @@ public class BookServiceImpl implements BookService {
 		return dto;
 	}
 
+	@Override
+	public List<Book> getListOfBooks() {
+		// TODO Auto-generated method stub
+		return bookRepository.findAll();
+	}
+
 }
