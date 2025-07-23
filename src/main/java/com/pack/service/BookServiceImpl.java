@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
 		response.setPageSize(bookResponse.getSize());
 		response.setTotalElements(bookResponse.getNumberOfElements());
 		response.setTotalPages(bookResponse.getTotalPages());
-		response.setIsLast(bookResponse.isLast());
+		response.setLast(bookResponse.isLast());
 		return response;
 	}
 
@@ -100,6 +100,13 @@ public class BookServiceImpl implements BookService {
 	public List<Book> getListOfBooks() {
 		// TODO Auto-generated method stub
 		return bookRepository.findAll();
+	}
+
+	@Override
+	public Book getBookById(Long id) throws ResourseNotFoundException {
+		Book savedBook = bookRepository.findById(id)
+				.orElseThrow(() -> new ResourseNotFoundException("Book", "book_id", id));
+		return savedBook;
 	}
 
 }

@@ -32,7 +32,7 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-	@GetMapping("/get-books")
+	@GetMapping("/get-all-books")
 
 	public BookResponse getAllBooks(@RequestParam(value = "pageNum", defaultValue = AppConstraints.DEFAULT_PAGE_NUM, required = false) int pageNum,
 			@RequestParam(value = "pageSize", defaultValue = AppConstraints.DEFAULT_PAGE_SIZE, required = false) int pageSize,
@@ -62,9 +62,14 @@ public class BookController {
 		return new ResponseEntity<>("Deleted", HttpStatus.OK);
 	}
 	
-	@GetMapping("/geting-books")
+	@GetMapping("/all-books-as-list")
 	public List<Book> getAllBooks() {
 		List<Book> response = bookService.getListOfBooks();
 		return response;
+	}
+	@GetMapping("/get-book-by-id/{id}")
+	public Book getBookById(@PathVariable(name = "id") Long id) throws ResourseNotFoundException {
+	return 	bookService.getBookById(id);
+
 	}
 }

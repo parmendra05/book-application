@@ -19,4 +19,5 @@ public interface BookService {
 
 	List<Book> getListOfBooks();
 
+    Book getBookById(Long id) throws ResourseNotFoundException;
 }
